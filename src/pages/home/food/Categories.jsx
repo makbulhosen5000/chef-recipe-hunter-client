@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Recipe from './Recipe';
 
 const Categories = () => {
     const [categories,setCategories] = useState([]);
@@ -15,8 +16,11 @@ const Categories = () => {
     },[])
     return (
       <div className="p-10 mx-auto text-center ">
-        
-        {loading ? <span className='text-red-600 text-bold'>Loading...</span>:''}
+        {loading ? (
+          <span className="text-red-600 text-bold">Loading...</span>
+        ) : (
+          ""
+        )}
 
         <h1 className="text-2xl mb-10 font-bold">
           <span className="text-red-600">Recipe</span> Categories
@@ -29,14 +33,15 @@ const Categories = () => {
                 alt="category image"
                 className="rounded-full w-32 h-32"
               />
-              <p key={category.id}>
-                <Link to="" className="text-black pt-4">
+          
+                <Link to={`/categories/${category.id}`} className="text-black pt-4">
                   {category?.chef}
                 </Link>
-              </p>
+          
             </div>
           ))}
         </div>
+        <Recipe/>
       </div>
     );
 };
