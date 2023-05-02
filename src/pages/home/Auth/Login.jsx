@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaGitAlt, FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
@@ -41,11 +42,26 @@ const Login = () => {
               Sign In
             </button>
             <a className="inline-block align-baseline font-bold text-sm text-blue-500">
-              <small className='ms-2'>Don't Hove Account?</small>
+              <small className="ms-2">Don't Hove Account?</small>
               <Link to="/register">
-                <small className="text-black hover:text-blue-800"> Register here</small>
+                <small className="text-black hover:text-blue-800">
+                  {" "}
+                  Register here
+                </small>
               </Link>
             </a>
+          </div>
+          <div className="my-10 text-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold mb-5 py-2 px-3 rounded focus:outline-none focus:shadow-outline"
+              type="button"><FaGoogle />Login With Google
+            </button>
+            <br />
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline"
+              type="button">     
+                <FaGithub />Login With GitHub
+            </button>
           </div>
         </form>
       </div>
