@@ -34,16 +34,6 @@ const Header = () => {
                 </Link>
 
                 <Link
-                  to="/about"
-                  className={`text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium ${
-                    location.pathname === "/about"
-                      ? "bg-yellow-500 text-white"
-                      : "text-gray-300"
-                  }`}
-                >
-                  About
-                </Link>
-                <Link
                   to="/blog"
                   className={`text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium ${
                     location.pathname === "/blog"
@@ -113,16 +103,6 @@ const Header = () => {
                 Home
               </Link>
               <Link
-                to="/about"
-                className={`text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium ${
-                  location.pathname === "/about"
-                    ? "bg-yellow-500 text-white"
-                    : "text-gray-300"
-                }`}
-              >
-                About
-              </Link>
-              <Link
                 to="/blog"
                 className={`text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium ${
                   location.pathname === "/blog"
@@ -146,19 +126,23 @@ const Header = () => {
           </div>
         </div>
       </nav>
-      <div
-        className="h-64 sm:h-72 md:h-96 lg:h-128 xl:h-144 bg-cover bg-center flex items-center justify-center"
-        style={{ backgroundImage: `url(${coverPhoto})` }}
-      >
-        <div className="text-dark text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">
-            Chef-Recipe-Hunter
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-           Come and taste our food you must loved it
-          </p>
+      {<Link to="/login"></Link> ? (
+        ""
+      ) : (
+        <div
+          className="h-64 sm:h-72 md:h-96 lg:h-128 xl:h-144 bg-cover bg-center flex items-center justify-center"
+          style={{ backgroundImage: `url(${coverPhoto})` }}
+        >
+          <div className="text-dark text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">
+              Chef-Recipe-Hunter
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+              Come and taste our food you must loved it
+            </p>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

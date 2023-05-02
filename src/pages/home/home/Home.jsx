@@ -4,8 +4,7 @@ import Categories from '../food/Categories';
 const Home = () => {
     return (
         <div>
-            <Categories/>
-            
+            <Categories/>    
         </div>
     );
 };
