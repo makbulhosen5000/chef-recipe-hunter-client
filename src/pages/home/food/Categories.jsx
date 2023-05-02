@@ -15,21 +15,25 @@ const Categories = () => {
     },[])
     return (
       <div className="p-10 mx-auto text-center ">
+        
+        {loading ? <span className='text-red-600 text-bold'>Loading...</span>:''}
+
         <h1 className="text-2xl mb-10 font-bold">
-          <h1>{loading? "Data is Loading":''}</h1>
           <span className="text-red-600">Recipe</span> Categories
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
           {categories.map((category) => (
-            <div className="">
+            <div className="" key={category.id}>
               <img
                 src={category?.image_url}
                 alt="category image"
                 className="rounded-full w-32 h-32"
               />
-              <Link to="" className="text-black pt-4">
-                {category?.chef}
-              </Link>
+              <p key={category.id}>
+                <Link to="" className="text-black pt-4">
+                  {category?.chef}
+                </Link>
+              </p>
             </div>
           ))}
         </div>
