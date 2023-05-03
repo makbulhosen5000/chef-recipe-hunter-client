@@ -1,12 +1,30 @@
-import React, { useContext,useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../provider/AuthProvider';
+import React, { useContext, useState } from "react";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
+  const { signInWithGoogle } = useContext(AuthContext);
+  
+  
+   const loginWithGoogle = () => {
+     signInWithGoogle()
+       .then((result) => {
+         const loggedUser = result.user;
+         console.log(loggedUser);
+       })
+       .catch((error) => {
+         console.log(error);
+       });
+       navigate("/");
+   };
+
+
+
   const location = useLocation();
   console.log(location);
 
@@ -18,7 +36,7 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
     setError("");
-    if(password === password){
+    if (password === password) {
       setError("Password or email doesn't match");
     }
     signIn(email, password)
@@ -31,7 +49,6 @@ const Login = () => {
       .then((error) => {
         console.log(error);
       });
-
   };
 
   return (
@@ -71,7 +88,10 @@ const Login = () => {
             <p className="text-red-600">{error}</p>
             <Link to="/register">
               Don't Have Account?
-              <span className="link-hover hover:text-red-600"> sign-up here</span>
+              <span className="link-hover hover:text-red-600">
+                {" "}
+                sign-up here
+              </span>
             </Link>
           </div>
           <div className="flex justify-end">
@@ -82,7 +102,24 @@ const Login = () => {
               Login
             </button>
           </div>
-          <div>
+          <div className="mt-3 text-center">
+            <button
+              onClick={loginWithGoogle}
+              className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded"
+              type="submit"
+            >
+              <FaGoogle />
+              Login With Google
+            </button>
+          </div>
+          <div className="mt-3 text-center">
+            <button
+              className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded"
+              type="submit"
+            >
+              <FaGithub />
+              Login With GitHub
+            </button>
           </div>
         </form>
       </div>

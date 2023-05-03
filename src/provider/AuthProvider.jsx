@@ -5,12 +5,22 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import userImage from '../assets/img/user/akash.jpg'
 import app from "../firebase/firebase.config";
 
+
 export const AuthContext = createContext(null);
+
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+
+const signInWithGoogle = () => {
+  return signInWithPopup(auth, googleProvider);
+};
+
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -48,12 +58,14 @@ const AuthProvider = ({ children }) => {
     userImage,
     user,
     loading,
+    signInWithGoogle,
     createUser,
     signIn,
     logOut,
   };
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}
+    </AuthContext.Provider>
   );
 };
 
