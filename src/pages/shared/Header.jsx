@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Logo from "../../../public/logo.png";
 import coverPhoto from '../../assets/cover-photo/chef.jpg'
 import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Header = () => {
+  const { user, logOut, userImage } = useContext(AuthContext);
+  console.log("user--", user);
+
+  // logout
+  const handleLogOut = () => {
+    logOut()
+      .then((result) => {})
+      .catch((error) => {
+        console.log(error);
+      });
+      toast("Logout Successfully");
+  };
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,16 +57,39 @@ const Header = () => {
                 >
                   Blog
                 </Link>
-                <Link
-                  to="/login"
-                  className={`text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium ${
-                    location.pathname === "/login"
-                      ? "bg-yellow-500 text-white"
-                      : "text-gray-300"
-                  }`}
-                >
-                  Login
-                </Link>
+                {user ? (
+                  <button onClick={handleLogOut}>
+                    <Link
+                      to=""
+                      className={`text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium ${
+                        location.pathname === ""
+                          ? "bg-yellow-500 text-white"
+                          : "text-gray-300"
+                      }`}
+                    >
+                      Logout
+                    </Link>
+                  </button>
+                ) : (
+                  <Link
+                    to="/login"
+                    className={`text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium ${
+                      location.pathname === "/login"
+                        ? "bg-yellow-500 text-white"
+                        : "text-gray-300"
+                    }`}
+                  >
+                    login
+                  </Link>
+                )}
+                {userImage && user && (
+                  <img
+                    src={userImage}
+                    title={user?.email}
+                    className=" rounded-full"
+                    style={{ height: "25px", width: "25px" }}
+                  />
+                )}
               </div>
             </div>
             <div className="-mr-2 flex md:hidden">
@@ -127,19 +164,19 @@ const Header = () => {
         </div>
       </nav>
 
-        <div
-          className="h-64 sm:h-72 md:h-96 lg:h-128 xl:h-144 bg-cover bg-center flex items-center justify-center"
-          style={{ backgroundImage: `url(${coverPhoto})` }}
-        >
-          <div className="text-dark text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">
-              Chef-Recipe-Hunter
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-              Come and taste our food you must loved it
-            </p>
-          </div>
+      <div
+        className="h-64 sm:h-72 md:h-96 lg:h-128 xl:h-144 bg-cover bg-center flex items-center justify-center"
+        style={{ backgroundImage: `url(${coverPhoto})` }}
+      >
+        <div className="text-dark text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold">
+            Chef-Recipe-Hunter
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+            Come and taste our food you must loved it
+          </p>
         </div>
+      </div>
     </>
   );
 };

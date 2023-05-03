@@ -1,71 +1,96 @@
-import React from 'react';
-import { FaGitAlt, FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import React, { useContext,useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../provider/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
-    return (
-      <div className="flex justify-center items-center h-screen my-10">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8">
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+  const { signIn } = useContext(AuthContext);
+  const location = useLocation();
+  console.log(location);
+
+  const handleLoginForm = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    setError("");
+    toast("Login Successfully");
+
+    if (password === password) {
+      setError("Password or email doesn't match");
+    }else if(password !== password)
+
+    signIn(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        form.reset();
+        navigate("/");
+      })
+      .then((error) => {
+        console.log(error);
+      });
+
+  };
+
+  return (
+    <div className="flex justify-center items-center full-screen my-10">
+      <div className="border border-gray-300 p-6">
+        <h2 className="text-lg font-medium mb-4">Login</h2>
+        <form onSubmit={handleLoginForm}>
           <div className="mb-4">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 font-medium mb-2"
               htmlFor="email"
             >
               Email
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="username"
+              className="border border-gray-400 p-2 w-full"
+              id="email"
               type="text"
-              placeholder="Enter your email"
+              name="email"
+              required
             />
           </div>
           <div className="mb-4">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 font-medium mb-2"
               htmlFor="password"
             >
               Password
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="border border-gray-400 p-2 w-full"
               id="password"
               type="password"
-              placeholder="Enter your password"
+              name="password"
+              required
             />
+            <p className="text-red-600">{error}</p>
+            <Link to="/register">
+              Don't Have Account?
+              <span className="link-hover hover:text-red-600"> sign-up here</span>
+            </Link>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex justify-end">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline"
-              type="button"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded"
+              type="submit"
             >
-              Sign In
+              Login
             </button>
-            <a className="inline-block align-baseline font-bold text-sm text-blue-500">
-              <small className="ms-2">Don't Hove Account?</small>
-              <Link to="/register">
-                <small className="text-black hover:text-blue-800">
-                  {" "}
-                  Register here
-                </small>
-              </Link>
-            </a>
           </div>
-          <div className="my-10 text-center">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold mb-5 py-2 px-3 rounded focus:outline-none focus:shadow-outline"
-              type="button"><FaGoogle />Login With Google
-            </button>
-            <br />
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline"
-              type="button">     
-                <FaGithub />Login With GitHub
-            </button>
+          <div>
           </div>
         </form>
       </div>
-    );
+    </div>
+  );
 };
-
 export default Login;

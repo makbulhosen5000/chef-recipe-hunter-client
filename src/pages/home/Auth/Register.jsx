@@ -1,86 +1,142 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Register = () => {
-  return (
-    <div className="flex justify-center items-center h-screen my-10">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8">
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
-            Name
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="text"
-            placeholder="Enter your Name"
-          />
+   const [error,setError] = useState('');
+    const {createUser} = useContext(AuthContext);
+ 
+    const handleRegisterForm = (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const photo = form.photo.value;
+      const email = form.email.value;
+      const password = form.password.value;
+      const confirm = form.confirm.value;
+      console.log(email, password, confirm, photo);
+
+      setError("");
+      toast("Register Successfully")
+      
+
+      if (password !== confirm) {
+        setError("Password Doesn't Match");
+      } else if (password.length < 6) {
+        setError("Password gives more than 6 Character ");
+      }
+
+      createUser(email, password)
+        .then((result) => {
+          const loggedUser = result.user;
+          console.log(loggedUser);
+          form.reset();
+        })
+        .catch((error) => {
+          console.log(error);
+          setError(error.message);
+        });
+    };
+
+    return (
+      <div className="flex justify-center items-center full-screen my-10">
+        <div className="border border-gray-300 p-6">
+          <h2 className="text-lg font-medium mb-4">Register</h2>
+          <form onSubmit={handleRegisterForm}>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 font-medium mb-2"
+                for="username"
+              >
+                Username
+              </label>
+              <input
+                className="border border-gray-400 p-2 w-full"
+                id="name"
+                type="text"
+                name="name"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 font-medium mb-2"
+                for="email"
+              >
+                Email
+              </label>
+              <input
+                className="border border-gray-400 p-2 w-full"
+                id="email"
+                type="text"
+                name="email"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 font-medium mb-2"
+                for="email"
+              >
+                Photo URL
+              </label>
+              <input
+                className="border border-gray-400 p-2 w-full"
+                id="photo"
+                type="file"
+                name="photo"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 font-medium mb-2"
+                for="password"
+              >
+                Password
+              </label>
+              <input
+                className="border border-gray-400 p-2 w-full"
+                id="password"
+                type="password"
+                name="password"
+                required
+              />
+              <p className="text-red-600">{error}</p>
+            </div>
+
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 font-medium mb-2"
+                for="password"
+              >
+                Confirm Password
+              </label>
+              <input
+                className="border border-gray-400 p-2 w-full"
+                id="confirm"
+                type="password"
+                name="confirm"
+                required
+              />
+              <Link to="/login">
+                Already Have Account?{" "}
+                <span className=" link-hover">click here</span>{" "}
+              </Link>
+            </div>
+
+            <div className="flex justify-end">
+              <button
+                className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded"
+                type="submit"
+              >
+                Register
+              </button>
+            </div>
+          </form>
         </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            type="email"
-            placeholder="Enter your Photo"
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
-            Photo URL
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="photo"
-            type="file"
-            placeholder="Enter your Photo"
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            placeholder="Enter your password"
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-          >
-            Sign Up
-          </button>
-          <a className="inline-block align-baseline font-bold text-sm text-blue-500">
-            <small className="ms-2">Do You Hove Account?</small>
-            <Link to="/login">
-              <small className="text-black hover:text-blue-800">
-                {" "}
-                Login here
-              </small>
-            </Link>
-          </a>
-        </div>
-      </form>
-    </div>
-  );
+      </div>
+    );
 };
 
 export default Register;
