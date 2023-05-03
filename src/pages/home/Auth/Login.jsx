@@ -1,7 +1,6 @@
 import React, { useContext,useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
-import { toast } from 'react-hot-toast';
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -19,12 +18,9 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
     setError("");
-    toast("Login Successfully");
-
-    if (password === password) {
+    if(password === password){
       setError("Password or email doesn't match");
-    }else if(password !== password)
-
+    }
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
