@@ -9,6 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
   const { signInWithGoogle } = useContext(AuthContext);
+  const { signInWithGithub } = useContext(AuthContext);
   
   
    const loginWithGoogle = () => {
@@ -22,6 +23,18 @@ const Login = () => {
        });
        navigate("/");
    };
+   const loginWithGithub = () => {
+     signInWithGithub()
+       .then((result) => {
+         const loggedUser = result.user;
+         console.log(loggedUser);
+       })
+       .catch((error) => {
+         console.log(error);
+       });
+     navigate("/");
+   };
+
 
 
 
@@ -114,6 +127,7 @@ const Login = () => {
           </div>
           <div className="mt-3 text-center">
             <button
+              onClick={loginWithGithub}
               className="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded"
               type="submit"
             >

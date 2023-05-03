@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
+  GithubAuthProvider,
 } from "firebase/auth";
 import userImage from '../assets/img/user/akash.jpg'
 import app from "../firebase/firebase.config";
@@ -16,9 +17,14 @@ export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 const signInWithGoogle = () => {
   return signInWithPopup(auth, googleProvider);
+};
+
+const signInWithGithub = () => {
+  return signInWithPopup(auth, githubProvider);
 };
 
 
@@ -59,6 +65,7 @@ const AuthProvider = ({ children }) => {
     user,
     loading,
     signInWithGoogle,
+    signInWithGithub,
     createUser,
     signIn,
     logOut,
