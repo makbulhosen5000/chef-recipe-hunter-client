@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+
 import AllRecipe from './AllRecipe';
 
-const Recipe = () => {
+const Chef = () => {
 
      const [recipes,setRecipes] = useState([]);
      const [loading,setLoading] = useState(true);
@@ -22,7 +23,7 @@ const Recipe = () => {
           ""
         )}
         <h1 className="text-2xl mb-10 font-bold">
-          <span className="text-red-600">Recent</span> Recipe
+          <span className="text-red-600">Chef</span> Recipes
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {recipes.map((recipe) => (
@@ -33,4 +34,4 @@ const Recipe = () => {
     );
 };
 
-export default Recipe;
+export default Chef;

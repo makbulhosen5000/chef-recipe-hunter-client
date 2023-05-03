@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Recipe from './Recipe';
+import Chef from './Chef';
+import { FaRegStar, FaStar } from "react-icons/fa";
+import Rating from "react-rating";
 
 const Categories = () => {
     const [categories,setCategories] = useState([]);
@@ -23,9 +25,9 @@ const Categories = () => {
         )}
 
         <h1 className="text-2xl mb-10 font-bold">
-          <span className="text-red-600">Recipe</span> Categories
+          <span className="text-red-600">Chef</span> Details
         </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           {categories.map((category) => (
             <div className="" key={category.id}>
               <Link
@@ -35,14 +37,33 @@ const Categories = () => {
                 <img
                   src={category?.image_url}
                   alt="category image"
-                  className="rounded-full w-32 h-32"
+                  className=""
+                  style={{ height: "200px", width: "300px" }}
                 />
-                {category?.chef}
+                <h1 className="font-bold pt-5">Name: {category?.name}</h1>
+                <p className="">Experience: {category?.experience}</p>
+                <p className="">Recipe: {category?.recipe} Items</p>
+                <p className="">Like: {category?.like}</p>
+                <Rating
+                  placeholderRating={category?.rating}
+                  readonly
+                  emptySymbol={<FaRegStar />}
+                  placeholderSymbol={<FaStar />}
+                  fullSymbol={<FaStar />}
+                />
+                <div>
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline"
+                    type="button"
+                  >
+                    View Recipes
+                  </button>
+                </div>
               </Link>
             </div>
           ))}
         </div>
-        <Recipe />
+        <Chef />
       </div>
     );
 };
