@@ -28,20 +28,21 @@ const Categories = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
           {categories.map((category) => (
             <div className="" key={category.id}>
-              <img
-                src={category?.image_url}
-                alt="category image"
-                className="rounded-full w-32 h-32"
-              />
-          
-                <Link to={`/categories/${category.id}`} className="text-black pt-4">
-                  {category?.chef}
-                </Link>
-          
+              <Link
+                to={`/categories/${category.id}`}
+                className="text-black pt-4"
+              >
+                <img
+                  src={category?.image_url}
+                  alt="category image"
+                  className="rounded-full w-32 h-32"
+                />
+                {category?.chef}
+              </Link>
             </div>
           ))}
         </div>
-        <Recipe/>
+        <Recipe />
       </div>
     );
 };

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen my-10">
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8">
         <div className="mb-4">
           <label

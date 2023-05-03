@@ -126,9 +126,7 @@ const Header = () => {
           </div>
         </div>
       </nav>
-      {<Link to="/login"></Link> ? (
-        ""
-      ) : (
+
         <div
           className="h-64 sm:h-72 md:h-96 lg:h-128 xl:h-144 bg-cover bg-center flex items-center justify-center"
           style={{ backgroundImage: `url(${coverPhoto})` }}
@@ -142,7 +140,6 @@ const Header = () => {
             </p>
           </div>
         </div>
-      )}
     </>
   );
 };
