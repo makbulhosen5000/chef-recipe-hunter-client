@@ -6,6 +6,7 @@ import FoodList from "../pages/home/food/FoodList";
 import Login from "../pages/home/Auth/Login";
 import Register from "../pages/home/Auth/Register";
 import Blog from "../pages/home/blog/Blog";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -16,11 +17,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element:<Home />
       },
       {
         path: "categories/:id",
-        element: <FoodList />,
+        element: (
+          <PrivateRoute>
+            <FoodList />,
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/food/${params.id}`),
       },
