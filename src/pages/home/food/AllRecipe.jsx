@@ -7,10 +7,12 @@ const AllRecipe = ({ recipe }) => {
     <div className="">
       <img
         src={recipe?.image_url}
-        alt="" className=""
+        alt=""
+        className=""
         style={{ height: "200px", width: "300px" }}
       />
       <h1 className="font-bold pt-5">Name: {recipe?.chef} Recipe</h1>
+      
     </div>
   );
 };

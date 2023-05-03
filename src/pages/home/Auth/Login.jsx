@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
@@ -10,33 +10,29 @@ const Login = () => {
   const { signIn } = useContext(AuthContext);
   const { signInWithGoogle } = useContext(AuthContext);
   const { signInWithGithub } = useContext(AuthContext);
-  
-  
-   const loginWithGoogle = () => {
-     signInWithGoogle()
-       .then((result) => {
-         const loggedUser = result.user;
-         console.log(loggedUser);
-       })
-       .catch((error) => {
-         console.log(error);
-       });
-       navigate("/");
-   };
-   const loginWithGithub = () => {
-     signInWithGithub()
-       .then((result) => {
-         const loggedUser = result.user;
-         console.log(loggedUser);
-       })
-       .catch((error) => {
-         console.log(error);
-       });
-     navigate("/");
-   };
 
-
-
+  const loginWithGoogle = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    navigate("/");
+  };
+  const loginWithGithub = () => {
+    signInWithGithub()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    navigate("/");
+  };
 
   const location = useLocation();
   console.log(location);

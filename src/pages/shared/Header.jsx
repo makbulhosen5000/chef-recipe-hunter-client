@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Logo from "../../../public/logo.png";
-import coverPhoto from '../../assets/cover-photo/chef.jpg'
+import coverPhoto from "../../assets/cover-photo/chef.jpg";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { toast } from "react-hot-toast";
@@ -16,7 +16,7 @@ const Header = () => {
       .catch((error) => {
         console.log(error);
       });
-      toast("Logout Successfully");
+    toast("Logout Successfully");
   };
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
