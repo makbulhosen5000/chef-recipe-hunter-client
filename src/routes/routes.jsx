@@ -27,7 +27,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/food/${params.id}`),
+          fetch(`https://chef-recipe-hunter-server-mhakash5000/food/${params.id}`),
       },
       {
         path: "blog",

@@ -26,7 +26,7 @@ const Header = () => {
   };
   return (
     <>
-      <nav className="bg-black">
+      <nav className="mx-10 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
@@ -92,7 +92,7 @@ const Header = () => {
                 )}
               </div>
             </div>
-            <div className="-mr-2 flex md:hidden">
+            <div className="mr-2 flex md:hidden">
               <button
                 onClick={toggleMenu}
                 type="button"
@@ -165,7 +165,7 @@ const Header = () => {
       </nav>
 
       <div
-        className="h-64 sm:h-72 md:h-96 lg:h-128 xl:h-144 bg-cover bg-center flex items-center justify-center"
+        className="mx-10 h-64 sm:h-72 md:h-96 lg:h-128 xl:h-144 bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url(${coverPhoto})` }}
       >
         <div className="text-dark text-center">

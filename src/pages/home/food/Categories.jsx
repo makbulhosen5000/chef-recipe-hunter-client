@@ -10,7 +10,7 @@ const Categories = () => {
   useEffect(() => {
     setTimeout(() => {}, 3000);
     setTimeout(() => {
-      fetch("http://localhost:5000/categories/")
+      fetch("http://localhost:5000/categories")
         .then((res) => res.json())
         .then((data) => setCategories(data))
         .catch((error) => console.error(error));
@@ -18,7 +18,7 @@ const Categories = () => {
     }, 5000);
   }, []);
   return (
-    <div className="p-10 mx-auto text-center ">
+    <div className="ps-10 text-center ">
       {loading ? (
         <div className="flex justify-center items-center h-screen">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
@@ -27,7 +27,7 @@ const Categories = () => {
         ""
       )}
 
-      <h1 className="text-2xl mb-10 font-bold">
+      <h1 className="text-2xl my-10 font-bold">
         <span className="text-red-600">Chef</span> Details
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
