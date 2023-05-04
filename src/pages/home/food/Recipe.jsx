@@ -8,7 +8,7 @@ const Recipe = () => {
 
   useEffect(() => {
     setTimeout(()=>{
-      fetch("http://localhost:5000/recipe")
+      fetch("https://chef-recipe-hunter-server-mhakash5000.vercel.app/recipe")
         .then((res) => res.json())
         .then((data) => setRecipes(data))
         .catch((error) => console.error(error));

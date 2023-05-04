@@ -10,7 +10,9 @@ const Categories = () => {
   useEffect(() => {
     setTimeout(() => {}, 3000);
     setTimeout(() => {
-      fetch("http://localhost:5000/categories")
+      fetch(
+        "https://chef-recipe-hunter-server-mhakash5000.vercel.app/categories"
+      )
         .then((res) => res.json())
         .then((data) => setCategories(data))
         .catch((error) => console.error(error));

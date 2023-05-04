@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element:<Home />
+        element: <Home />,
       },
       {
         path: "categories/:id",
@@ -27,7 +27,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://chef-recipe-hunter-server-mhakash5000/food/${params.id}`),
+          fetch(
+            `https://chef-recipe-hunter-server-mhakash5000.vercel.app/food/${params.id}`
+          ),
       },
       {
         path: "blog",
