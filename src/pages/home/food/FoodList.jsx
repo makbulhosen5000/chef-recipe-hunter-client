@@ -3,8 +3,10 @@ import { useLoaderData } from "react-router-dom";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { toast } from "react-hot-toast";
+import useTitle from "../../../hooks/useTitle";
 
 const FoodList = () => {
+  useTitle('Food')
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const food = useLoaderData();

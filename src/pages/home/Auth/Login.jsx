@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import useTitle from "../../../hooks/useTitle";
 
 const Login = () => {
+  useTitle('login');
   const [error, setError] = useState("");
 
   const navigate = useNavigate();

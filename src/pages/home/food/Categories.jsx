@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import Recipe from "./Recipe";
+import useTitle from "../../../hooks/useTitle";
 
 const Categories = () => {
+  useTitle("Chef");
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {

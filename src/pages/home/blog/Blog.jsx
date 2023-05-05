@@ -1,8 +1,10 @@
 import React from "react";
 import Pdf from "react-to-pdf";
+import useTitle from "../../../hooks/useTitle";
 const ref = React.createRef();
 
 const Blog = () => {
+  useTitle("Blog");
   return (
     <div>
       <div className="text-center my-10">
